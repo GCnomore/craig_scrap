@@ -32,6 +32,20 @@ class Scrapper:
             has_image_btn = self.driver.find_element(By.XPATH, '/html/body/div[1]/main/form/div[3]/div[2]/div[1]/label[2]/input')
             has_image_btn.click()
             sleep(5)
+            
+        if(self.config['is_location_filter'] and self.config['miles_from_location'] and self.config['zip_code']):
+            miles_input = self.driver.find_element(By.XPATH, '/html/body/div[1]/main/form/div[3]/div[2]/div[2]/div[2]/input[1]')
+            zip_input = self.driver.find_element(By.XPATH, '/html/body/div[1]/main/form/div[3]/div[2]/div[2]/div[2]/input[2]')
+            apply_btn = self.driver.find_element(By.XPATH, '/html/body/div[1]/main/form/div[3]/div[4]/button[3]')
+            
+            miles_input.send_keys(self.config['miles_from_location'])
+            zip_input.send_keys(self.config['zip_code'])
+            
+            sleep(1)
+            
+            apply_btn.click()
+            
+            sleep(5)
     
     def start(self):
         pass
